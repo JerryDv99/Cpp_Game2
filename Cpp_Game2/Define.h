@@ -16,7 +16,7 @@ void Initialize(Object* _Object, char* _Texture1, char* _Texture2, char* _Textur
 	// ** 3항 연산자
 	// _Texture의 값이 nullptr이면 SetName()함수 실행
 	// 아니라면 _Texture 값 대입
-	_Object->Info.Texture[0] = (_Texture1 == nullptr) ? SetName() : _Texture1;
+	_Object->Info.Texture[0] = _Texture1;
 
 	_Object->Info.Texture[1] = _Texture2;
 
@@ -29,10 +29,7 @@ void Initialize(Object* _Object, char* _Texture1, char* _Texture2, char* _Textur
 	_Object->Speed = 0;
 
 	// ** 좌표값
-	_Object->TransInfo.Position[0] = Vector3(_PosX, _PosY, _PosZ);
-	_Object->TransInfo.Position[1] = Vector3(_PosX, _PosY + 1, _PosZ);
-	_Object->TransInfo.Position[2] = Vector3(_PosX - 2, _PosY + 2, _PosZ);
-	_Object->TransInfo.Position[3] = Vector3(_PosX - 2, _PosY + 3, _PosZ);
+	_Object->TransInfo.Position = Vector3(_PosX, _PosY, _PosZ);
 
 	// ** 회전값 (현재 사용 안함)
 	_Object->TransInfo.Rotation = Vector3(0.0f, 0.0f, 0.0f);
@@ -86,29 +83,17 @@ void UpdateInput(Object* _Object)
 {
 	// ** [상] 키를 입력받음.
 	if (GetAsyncKeyState(VK_UP))
-		_Object->TransInfo.Position[0].y -= 1;
-		_Object->TransInfo.Position[1].y -= 1;
-		_Object->TransInfo.Position[2].y -= 1;
-		_Object->TransInfo.Position[3].y -= 1;
+		_Object->TransInfo.Position.y -= 1;
 											
 	// ** [하] 키를 입력받음.				  
 	if (GetAsyncKeyState(VK_DOWN))			
-		_Object->TransInfo.Position[0].y += 1;
-		_Object->TransInfo.Position[1].y += 1;
-		_Object->TransInfo.Position[2].y += 1;
-		_Object->TransInfo.Position[3].y += 1;
+		_Object->TransInfo.Position.y += 1;
 											
 	// ** [좌] 키를 입력받음.				 
 	if (GetAsyncKeyState(VK_LEFT))			
-		_Object->TransInfo.Position[0].x -= 2;
-		_Object->TransInfo.Position[1].x -= 2;
-		_Object->TransInfo.Position[2].x -= 2;
-		_Object->TransInfo.Position[3].x -= 2;
+		_Object->TransInfo.Position.x -= 2;
 											
 	// ** [우] 키를 입력받음.				  
 	if (GetAsyncKeyState(VK_RIGHT))			
-		_Object->TransInfo.Position[0].x += 2;
-		_Object->TransInfo.Position[1].x += 2;
-		_Object->TransInfo.Position[2].x += 2;
-		_Object->TransInfo.Position[3].x += 2;
+		_Object->TransInfo.Position.x += 2;
 }

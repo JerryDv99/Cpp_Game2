@@ -17,7 +17,7 @@ struct Vector3
 struct Transform
 {
 	// 오브젝트가 존재하기 위해 필요한 최소한의 요소들
-	Vector3 Position[4];	// 좌표
+	Vector3 Position;	// 좌표
 	Vector3 Rotation;	// 회전률
 	Vector3 Scale;		// 크기
 };
@@ -35,7 +35,7 @@ struct Object
 	int Speed;
 	Information Info;
 	Transform TransInfo;
-	ULONGLONG ETime = GetTickCount64();
+	ULONGLONG ETime;
 };
 
 struct DrawTextInfo
